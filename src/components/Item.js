@@ -5,13 +5,21 @@ export default class Item extends React.Component{
         super()
     }
     
+    handleDelete(e){
+        const { id, deleteItem } = this.props
+        e.preventDefault();
+        deleteItem(id)
+    }
+
     render(){
         const { text, id } = this.props
         return(
             <tr>
                 <td>{ id }</td>
                 <td>{ text }</td>
-                <td>Action</td>
+                <td>
+                    <button onClick={this.handleDelete.bind(this)} className="btn btn-default" value="delete"> delete</button>
+                </td>
             </tr>
         )
     }

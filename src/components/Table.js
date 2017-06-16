@@ -6,6 +6,9 @@ export default class Table extends React.Component{
     }
     
     render(){
+        if(this.props.item.size === 0){
+            return null
+        }
         return(
             <div className="container">
                 <div className="row">
