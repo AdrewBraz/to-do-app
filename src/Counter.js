@@ -4,11 +4,11 @@ let counter = 1;
 
 const Counter = {
     increment() {
-        return `id ${String(counter++)}`
+        return `${String(counter++)}`
     },
 
     decrement() {
-        return `id ${String(counter--)}`
+        return `${String(counter--)}`
     }
 };
 

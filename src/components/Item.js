@@ -12,13 +12,12 @@ export default class Item extends React.Component{
     }
 
     render(){
-        const { text, id } = this.props
+        const { text} = this.props
         return(
             <tr>
-                <td>{ id }</td>
-                <td>{ text }</td>
+                <td colSpan="8">{ text }</td>
                 <td>
-                    <button onClick={this.handleDelete.bind(this)} className="btn btn-default" value="delete"> delete</button>
+                    <button onClick={this.handleDelete.bind(this)} className="btn btn-danger" value="delete"> delete</button>
                 </td>
             </tr>
         )

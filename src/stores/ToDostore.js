@@ -15,15 +15,19 @@ class ToDoStore extends EventEmitter{
     createItem(text) {
         const id = Counter.increment();
         this.todos.push({
-            id,
-            text
+            text,
+            id
         });
         this.emit('change');
     }
 
     deleteItem(id) {
         this.todos = this.todos.filter(todo => todo.id !== id);
-        Counter.decrement()
+        this.emit("change");
+    }
+
+    deleteAllItems(){
+        this.todos = [];
         this.emit("change");
     }
 
@@ -40,9 +44,10 @@ class ToDoStore extends EventEmitter{
                 this.deleteItem(action.id);
                 break;    
             }
-            // case "DELEATE_ALL":{
-
-            // }
+            case "DELEATE_ALL":{
+                this.deleteAllItems();
+                break;
+            }
         }
     }
   

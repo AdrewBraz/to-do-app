@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server",
-    "prod": "npm run clean && NODE_ENV=production webpack -p",
-    "clean": "rimraf ./dist/*"
+    "prod": "npm run clean && set NODE_ENV=production && webpack -p",
+    "clean": "rimraf ./dist/*",
+    "app": "npm run server.js"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AdrewBraz/to-do-app.git"
@@ -42,7 +44,9 @@
     "webpack": "^2.6.1"
   },
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "express-cors": "0.0.3",
     "flux": "^3.1.2",
     "handlebars": "^4.0.10",
     "react": "^15.6.0",

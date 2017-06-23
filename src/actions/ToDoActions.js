@@ -21,9 +21,8 @@ export function deleteItem(id){
     });
 } 
 
-export function deleateAllItems(arr){
+export function deleateAllItems(){
     dispatcher.dispatch({
-        type: "DELEATE_ALL",
-        arr
+        type: "DELEATE_ALL"
     });
 } 

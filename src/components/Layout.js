@@ -8,11 +8,15 @@ import Item from './Item';
 import ToDoStore from '../stores/ToDostore';
 import * as ToDoActions from '../actions/ToDoActions';
 
+import ValueStore from '../stores/Valuestore';
+import * as ValueActions from '../actions/ValueActions';
+
 export default class Layout extends React.Component{
     constructor(){
         super();
         this.state = {
            todos: ToDoStore.getAllToDos(),
+           value: ValueStore.getValue()
         }
     }
 
@@ -21,11 +25,20 @@ export default class Layout extends React.Component{
             this.setState({
                 todos: ToDoStore.getAllToDos()
             })
+        }),
+         ValueStore.on('change', () =>{
+            this.setState({
+               value: ValueStore.getValue()
+            })
         })
     }
 
-    getText(value){
-        this.setState({value})
+    changeValue(text){
+        ValueActions.changeValue(text)
+    }
+
+    cleanValue(){
+        ValueActions.cleanValue();
     }
 
     createItem(){
@@ -34,6 +47,10 @@ export default class Layout extends React.Component{
 
     deleteItem(id){
         ToDoActions.deleteItem(id)
+    }
+
+    deleteAllItems(){
+        ToDoActions.deleateAllItems();
     }
 
     render(){
@@ -45,8 +62,8 @@ export default class Layout extends React.Component{
         return(
             <div>
                 <Header/>
-                <Form  getText = {this.getText.bind(this)} createItem = {this.createItem.bind(this)} />
-                <Table item = {itemCompontent}/>
+                <Form cleanValue = {this.cleanValue.bind(this)} changeValue = {this.changeValue.bind(this)} createItem = {this.createItem.bind(this)} />
+                <Table deleteAllItems={this.deleteAllItems.bind(this)} item = {itemCompontent}/>
             </div>
         )
     }
